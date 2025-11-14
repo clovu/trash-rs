@@ -1,46 +1,26 @@
-# rust-template
+# trash-rs
 
-A simple Rust project template to kickstart your development.
+`trash-rs` is a Rust CLI tool to safely move files to the Trash. Currently, it supports **macOS**, with **Windows** and **Linux** support planned for future releases.
 
 ## Features
 
-- **Environment Variable Management**: Uses the `dotenv` crate to load environment variables from a `.env` file.
-- **Pre-commit Hooks**: Configured with `pre-commit` to ensure code quality and formatting.
-- **CI/CD Integration**: Includes a GitHub Actions workflow for building, linting, and testing the project.
-- **Code Formatting**: Enforces consistent code style with `rustfmt`.
+* Safely move files to the system Trash without permanent deletion.
+* Lightweight and simple CLI interface.
+* Preserves file paths and metadata.
+* Designed for cross-platform support in the future.
 
-## Prerequisites
+## Usage
 
-- [Rust](https://www.rust-lang.org/tools/install) (latest stable version recommended)
-- [cargo](https://doc.rust-lang.org/cargo/) (comes with Rust)
-- [pre-commit](https://pre-commit.com/) (optional, for pre-commit hooks)
+```bash
+trash /path/to/your/file.txt
+```
 
-## Getting Started
+This will move the specified file to the Trash.
 
-1. Clone the repository:
+## Planned Features
 
-   ```sh
-   git clone https://github.com/your-username/rust-template.git
-   cd rust-template
-   ```
-
-2. Install dependencies:
-
-   ```sh
-   cargo build
-   ```
-
-3. Run the project:
-
-   ```sh
-   cargo run
-   ```
-
-4. Run tests:
-
-   ```sh
-   cargo test
-   ```
+* **Windows support**: Move files to the Recycle Bin.
+* **Linux support**: Move files to the Trash according to the FreeDesktop.org standard.
 
 ## License
 
