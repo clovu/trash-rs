@@ -1,0 +1,21 @@
+[package]
+authors = ["Clover You"]
+categories = ["command-line-utilities", "file-management", "cli"]
+description = "A simple CLI tool to move files to Trash on macOS."
+edition = "2024"
+name = "trash"
+repository = "https://github.com/clovu/trash-rs"
+version = "0.1.0"
+
+[dependencies]
+anyhow = "1.0"
+clap = { version = "4.5.51", features = ["derive"] }
+dotenv = "0.15.0"
+file-macro = { path = "crates/file-macro", features = ["derive"] }
+path-absolutize = "3.1.1"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+objc2 = "0.6.3"
+objc2-app-kit = "0.3.2"
+objc2-core-services = "=0.3.2"
+objc2-foundation = { version = "0.3.2", features = ["objc2-core-services"] }
