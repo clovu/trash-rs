@@ -1,13 +1,30 @@
 #[cfg(target_os = "macos")]
-pub mod macos;
+mod macos;
+mod path;
 #[cfg(target_os = "windows")]
-pub mod windows;
+mod windows;
 
-pub trait TrashHandler {
-    fn move_files_to_trash(paths: Vec<String>) -> crate::error::Result<()>;
+use std::path::PathBuf;
+
+use crate::error::Result;
+
+pub(crate) fn move_to_trash(paths: &[PathBuf]) -> Result<()> {
+    let resolved_paths = path::resolve_and_validate_paths(paths)?;
+
+    #[cfg(target_os = "macos")]
+    {
+        macos::move_files_to_trash(&resolved_paths)
+    }
+
+    #[cfg(target_os = "windows")]
+    {
+        windows::move_files_to_trash(&resolved_paths)
+    }
+
+    #[cfg(not(any(target_os = "macos", target_os = "windows")))]
+    {
+        Err(crate::error::TrashError::UnsupportedPlatform {
+            os: std::env::consts::OS,
+        })
+    }
 }
-
-#[cfg(target_os = "macos")]
-pub use macos::Trash;
-#[cfg(target_os = "windows")]
-pub use windows::Trash;

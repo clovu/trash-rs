@@ -1,9 +1,10 @@
-use super::TrashHandler;
+use std::path::PathBuf;
 
-pub struct Trash;
+use crate::error::Result;
+use crate::error::TrashError;
 
-impl TrashHandler for Trash {
-    fn move_files_to_trash(_paths: Vec<String>) -> crate::error::Result<()> {
-        anyhow::bail!("move to trash is not implemented on Windows in this build");
-    }
+pub(crate) fn move_files_to_trash(_paths: &[PathBuf]) -> Result<()> {
+    Err(TrashError::UnsupportedPlatform {
+        os: std::env::consts::OS,
+    })
 }
