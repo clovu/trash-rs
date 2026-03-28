@@ -1,6 +1,6 @@
 [package]
 authors.workspace = true
-categories = ["command-line-utilities", "file-management", "cli"]
+categories = ["command-line-utilities", "filesystem"]
 description = "CLI for moving files and directories to Trash (macOS, Windows, Linux)."
 edition.workspace = true
 license.workspace = true

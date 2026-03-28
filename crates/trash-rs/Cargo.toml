@@ -1,6 +1,6 @@
 [package]
 authors.workspace = true
-categories = ["file-management"]
+categories = ["filesystem"]
 description = "Library for moving files and directories to Trash (macOS, Windows, Linux)."
 edition.workspace = true
 license.workspace = true
