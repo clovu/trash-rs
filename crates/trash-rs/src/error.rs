@@ -6,19 +6,31 @@ pub type Result<T> = std::result::Result<T, TrashError>;
 #[derive(Debug, PartialEq, Eq)]
 pub enum TrashError {
     EmptyInput,
-    PathResolve { input: String },
-    PathNotFound { path: PathBuf },
+    PathResolve {
+        input: String,
+    },
+    PathNotFound {
+        path: PathBuf,
+    },
     FinderNotRunning,
-    DescriptorBuild { detail: String },
-    AppleEventSend { status: i32 },
-    AppleEventReply { status: i32 },
+    DescriptorBuild {
+        detail: String,
+    },
+    AppleEventSend {
+        status: i32,
+    },
+    AppleEventReply {
+        status: i32,
+    },
     TrashOperation {
         path: PathBuf,
         domain: String,
         code: isize,
         message: String,
     },
-    UnsupportedPlatform { os: &'static str },
+    UnsupportedPlatform {
+        os: &'static str,
+    },
 }
 
 impl fmt::Display for TrashError {

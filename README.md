@@ -1,27 +1,37 @@
 # trash-rs
 
-`trash-rs` is a Rust CLI tool to safely move files to the Trash. Currently, it supports **macOS**, with **Windows** and **Linux** support planned for future releases.
+`trash-rs` is an open-source Rust workspace that provides:
 
-## Features
+- `trash-rs`: a reusable library crate
+- `trash-rs-cli`: a command-line tool built on top of the library
 
-* Safely move files to the system Trash without permanent deletion.
-* Lightweight and simple CLI interface.
-* Preserves file paths and metadata.
-* Designed for cross-platform support in the future.
+## Crates.io packages
 
-## Usage
+- Library: [`trash-rs`](https://crates.io/crates/trash-rs)
+- CLI: [`trash-rs-cli`](https://crates.io/crates/trash-rs-cli)
+
+## Repository layout
+
+- [crates/trash-rs/](crates/trash-rs/) — library source and crate README
+- [crates/trash-rs-cli/](crates/trash-rs-cli/) — CLI source and crate README
+
+> For user-facing install/usage docs, read each crate README above (these are what crates.io displays).
+
+## Workspace development
 
 ```bash
-trash /path/to/your/file.txt
+cargo fmt --all -- --check
+cargo check --workspace
+cargo clippy --workspace --all-targets --all-features --tests --benches -- -D warnings
+cargo test --workspace --all-features
 ```
 
-This will move the specified file to the Trash.
+Run CLI from source:
 
-## Planned Features
-
-* **Windows support**: Move files to the Recycle Bin.
-* **Linux support**: Move files to the Trash according to the FreeDesktop.org standard.
+```bash
+cargo run -p trash-rs-cli -- --help
+```
 
 ## License
 
-MIT License © 2025 [Clover You](https://github.com/clovu)
+MIT License © 2026 [Clover You](https://github.com/clovu)

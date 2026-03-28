@@ -1,0 +1,14 @@
+[package]
+authors.workspace = true
+categories = ["command-line-utilities", "file-management", "cli"]
+description = "CLI for moving files and directories to Trash (macOS, Windows, Linux)."
+edition.workspace = true
+license.workspace = true
+name = "trash-rs-cli"
+readme = "README.md"
+repository.workspace = true
+version.workspace = true
+
+[dependencies]
+clap = { version = "4.5.51", features = ["derive"] }
+trash = { package = "trash-rs", path = "../trash-rs" }

@@ -18,7 +18,7 @@ pub(crate) fn move_files_to_trash(paths: &[PathBuf]) -> Result<()> {
             return Err(TrashError::TrashOperation {
                 path: path.clone(),
                 domain: error.domain().to_string(),
-                code: error.code() as isize,
+                code: error.code(),
                 message: error.localizedDescription().to_string(),
             });
         }
