@@ -67,7 +67,7 @@ impl fmt::Display for TrashError {
                 )
             }
             TrashError::UnsupportedPlatform { os } => {
-                write!(f, "moving files to Trash is not supported on {os}")
+                write!(f, "moving files to Trash is temporarily unsupported on {os}")
             }
         }
     }

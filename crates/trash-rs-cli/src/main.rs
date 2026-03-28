@@ -47,7 +47,7 @@ fn format_cli_error(err: &TrashError) -> String {
             )
         }
         TrashError::UnsupportedPlatform { os } => {
-            format!("This build does not support moving files to Trash on {os}.")
+            format!("Moving files to Trash is temporarily unsupported on {os}.")
         }
     }
 }
