@@ -1,3 +1,5 @@
+#[cfg(target_os = "linux")]
+mod linux;
 #[cfg(target_os = "macos")]
 mod macos;
 mod path;
@@ -21,7 +23,12 @@ pub(crate) fn move_to_trash(paths: &[PathBuf]) -> Result<()> {
         windows::move_files_to_trash(&resolved_paths)
     }
 
-    #[cfg(not(any(target_os = "macos", target_os = "windows")))]
+    #[cfg(target_os = "linux")]
+    {
+        linux::move_files_to_trash(&resolved_paths)
+    }
+
+    #[cfg(not(any(target_os = "macos", target_os = "windows", target_os = "linux")))]
     {
         Err(crate::error::TrashError::UnsupportedPlatform {
             os: std::env::consts::OS,
