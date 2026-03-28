@@ -12,6 +12,12 @@ pub enum TrashError {
     DescriptorBuild { detail: String },
     AppleEventSend { status: i32 },
     AppleEventReply { status: i32 },
+    TrashOperation {
+        path: PathBuf,
+        domain: String,
+        code: isize,
+        message: String,
+    },
     UnsupportedPlatform { os: &'static str },
 }
 
@@ -32,6 +38,21 @@ impl fmt::Display for TrashError {
             }
             TrashError::AppleEventReply { status } => {
                 write!(f, "failed to parse Apple Event reply: status {status}")
+            }
+            TrashError::TrashOperation {
+                path,
+                domain,
+                code,
+                message,
+            } => {
+                write!(
+                    f,
+                    "failed to move {} to Trash: [{} {}] {}",
+                    path.display(),
+                    domain,
+                    code,
+                    message
+                )
             }
             TrashError::UnsupportedPlatform { os } => {
                 write!(f, "moving files to Trash is not supported on {os}")

@@ -32,6 +32,20 @@ fn format_cli_error(err: &TrashError) -> String {
         TrashError::AppleEventReply { status } => {
             format!("Finder returned an invalid trash response (status: {status}).")
         }
+        TrashError::TrashOperation {
+            path,
+            domain,
+            code,
+            message,
+        } => {
+            format!(
+                "Failed to move {} to Trash: [{} {}] {}",
+                path.display(),
+                domain,
+                code,
+                message
+            )
+        }
         TrashError::UnsupportedPlatform { os } => {
             format!("This build does not support moving files to Trash on {os}.")
         }
